@@ -2,38 +2,51 @@
 
 class Program
 {
-    static string[,] board = new string[5, 5];
+    public Element[,] bd1 = new Element[5, 5];
+    public Robot robo1 = new Robot(1, 1, "North");
 
-    static void Main(string[] args)
+
+    public void InitGame()
     {
-        //Init table
-        //Init robot
+        robo1.place_robot(1, 1, "North", bd1);
 
         while (true)
         {
             Console.WriteLine("Type a command:");
             string user_command = Console.ReadLine();
 
+            // -------------------------------------------------------------------------
             if (user_command.StartsWith("PLACE_ROBOT"))
             {
                 string[] parameters = user_command.Split(' ');
-                if (parameters.Length == 2)
-                {
-                    string[] position = parameters[1].Split(',');
-                    int x = int.Parse(position[0].Trim());
-                    Console.WriteLine("X pos = " + x);
-                    int y = int.Parse(position[1].Trim());
-                    Console.WriteLine("Y pos = " + y);
-                    string orientation = position[2].Trim();
-                    Console.WriteLine("Ori pos = " + orientation);
+                int x = 0, y = 0;
+                string orientation = "";
 
-                    // Place wall at x, y position
-                }
-                else
+                Console.WriteLine("SIZE -> " + parameters.Length);
+
+                switch (parameters.Length)
                 {
-                    Console.WriteLine("Invalid command");
+                    case 2:
+                        string[] position = parameters[1].Split(',');
+                        x = int.Parse(position[0]);
+                        y = int.Parse(position[1]);
+                        orientation = position[2];
+                        break;
+
+                    case 4:
+                        x = int.Parse(parameters[1].Trim(','));
+                        y = int.Parse(parameters[2].Trim(','));
+                        orientation = (parameters[3].Trim(','));
+                        break;
+
+                    default:
+                        Console.WriteLine("Invalid command");
+                        break;
                 }
+                robo1.place_robot(x, y, orientation, bd1);
+
             }
+            // -------------------------------------------------------------------------
             else if (user_command.StartsWith("PLACE_WALL"))
             {
                 string[] parameters = user_command.Split(' ');
@@ -50,10 +63,26 @@ class Program
                     Console.WriteLine("Invalid command");
                 }
             }
+            // -------------------------------------------------------------------------
+            else if(user_command == "REPORT")
+            {
+                (int x, int y, string ori) = robo1.report();
+                Console.WriteLine(x + "," + y + "," + ori);
+
+            }
+            // -------------------------------------------------------------------------
             else
             {
                 Console.WriteLine("Command not supported");
             }
+
         }
+    }
+
+
+    static void Main(string[] args)
+    {
+        Program p = new Program();
+        p.InitGame();
     }
 }

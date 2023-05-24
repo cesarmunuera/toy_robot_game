@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\cesar\\Desktop\\toy_robot_game\\toy_robot_game.csproj": {}
+    "D:\\Uni\\toy_robot_game\\toy_robot_game.csproj": {}
   },
   "projects": {
-    "C:\\Users\\cesar\\Desktop\\toy_robot_game\\toy_robot_game.csproj": {
+    "D:\\Uni\\toy_robot_game\\toy_robot_game.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\cesar\\Desktop\\toy_robot_game\\toy_robot_game.csproj",
+        "projectUniqueName": "D:\\Uni\\toy_robot_game\\toy_robot_game.csproj",
         "projectName": "toy_robot_game",
-        "projectPath": "C:\\Users\\cesar\\Desktop\\toy_robot_game\\toy_robot_game.csproj",
+        "projectPath": "D:\\Uni\\toy_robot_game\\toy_robot_game.csproj",
         "packagesPath": "C:\\Users\\cesar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\cesar\\Desktop\\toy_robot_game\\obj\\",
+        "outputPath": "D:\\Uni\\toy_robot_game\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\cesar\\AppData\\Roaming\\NuGet\\NuGet.Config"
