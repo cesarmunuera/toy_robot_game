@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Uni\\toy_robot_game\\toy_robot_game.csproj",
+      "projectUniqueName": "C:\\Users\\cesar\\Desktop\\toy_robot_game\\toy_robot_game.csproj",
       "projectName": "toy_robot_game",
-      "projectPath": "D:\\Uni\\toy_robot_game\\toy_robot_game.csproj",
+      "projectPath": "C:\\Users\\cesar\\Desktop\\toy_robot_game\\toy_robot_game.csproj",
       "packagesPath": "C:\\Users\\cesar\\.nuget\\packages\\",
-      "outputPath": "D:\\Uni\\toy_robot_game\\obj\\",
+      "outputPath": "C:\\Users\\cesar\\Desktop\\toy_robot_game\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\cesar\\AppData\\Roaming\\NuGet\\NuGet.Config"
