@@ -34,6 +34,7 @@ class Program
                         x = int.Parse(position[0]);
                         y = int.Parse(position[1]);
                         orientation = position[2];
+
                         break;
 
                     case 4:
@@ -50,15 +51,14 @@ class Program
 
                 if (valid_command)
                 {
-                    if (valid_Position(x, y))
+                    if (valid_Position(x, y) && valid_Orientation(orientation))
                     {
                         robo1.place_robot(x, y, orientation, board1);
                     }
                     else
                     {
-                        Console.WriteLine("Input ranges not valid");
+                        Console.WriteLine("Input ranges or orientation not valid");
                     }
-
                 }
 
             }
@@ -126,16 +126,13 @@ class Program
     // This method checks if the range of X and Y is valid
     public bool valid_Position(int x_pos, int y_pos)
     {
-        if ((x_pos >= 1 && x_pos <= 5) && (y_pos >= 1 && y_pos <= 5))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return ((x_pos >= 1 && x_pos <= 5) && (y_pos >= 1 && y_pos <= 5));
     }
 
+    // This methos checks if the orientation is correct
+    public bool valid_Orientation(String orientation){
+        return (orientation == "NORTH" || orientation == "SOUTH" || orientation == "EAST" || orientation == "WEST");
+    }
 
     static void Main(string[] args)
     {

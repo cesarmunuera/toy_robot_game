@@ -60,6 +60,8 @@ public class Robot : Element
     // Move robot 1 position, depending on its direction
     public void move(Element[,] board)
     {
+        int next_x = 0, next_y = 0;
+
         // Check if robot exists
         if (this.x_pos != -1)
         {
@@ -69,51 +71,72 @@ public class Robot : Element
                 case "NORTH":
                     if (this.y_pos == 5)
                     {
-                        this.y_pos = 1;
+                        next_y = 1;
+                        next_x = this.x_pos;
                     }
                     else
                     {
-                        this.y_pos = this.y_pos + 1;
+                        next_y = this.y_pos + 1;
+                        next_x = this.x_pos;
                     }
                     break;
 
                 case "SOUTH":
                     if (this.y_pos == 1)
                     {
-                        this.y_pos = 5;
+                        next_y = 5;
+                        next_x = this.x_pos;
                     }
                     else
                     {
-                        this.y_pos = this.y_pos - 1;
+                        next_y = this.y_pos - 1;
+                        next_x = this.x_pos;
                     }
                     break;
 
                 case "EAST":
                     if (this.x_pos == 5)
                     {
-                        this.x_pos = 1;
+                        next_x = 1;
+                        next_y = this.y_pos;
                     }
                     else
                     {
-                        this.x_pos = this.x_pos + 1;
+                        next_x = this.x_pos + 1;
+                        next_y = this.y_pos;
                     }
                     break;
 
                 case "WEST":
                     if (this.x_pos == 1)
                     {
-                        this.x_pos = 5;
+                        next_x = 5;
+                        next_y = this.y_pos;
                     }
                     else
                     {
-                        this.x_pos = this.x_pos - 1;
+                        next_x = this.x_pos - 1;
+                        next_y = this.y_pos;
                     }
                     break;
-            } 
-
-        } else {
-                Console.WriteLine("No robot yet !!");
             }
+
+            if (board[next_x, next_y] == null)
+            {
+                this.x_pos = next_x;
+                this.y_pos = next_y;
+                board[next_x, next_y] = this;
+            }
+            else
+            {
+                Console.WriteLine("Position not empty");
+            }
+
+        }
+        else
+        {
+            Console.WriteLine("No robot yet !!");
+        }
 
     }
 
