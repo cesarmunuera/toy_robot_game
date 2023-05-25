@@ -1,4 +1,6 @@
 public class Element{
+    //Father class. Robot & wall inherit. Map made from this class.
+
     // Attributes
     public int x_pos { get; set; }
     public int y_pos { get; set; }

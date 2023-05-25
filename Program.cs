@@ -12,6 +12,7 @@ class Program
 
         while (true)
         {
+            // Get values from keyboard
             Console.WriteLine();
             Console.WriteLine("Type a command:");
             string user_command = Console.ReadLine();
@@ -20,27 +21,36 @@ class Program
             user_command = user_command.ToUpper(); //Upper always, to avoid problems
 
             // -------------------------------------------------------------------------
-            if (user_command.StartsWith("PLACE_ROBOT"))
+            if (user_command.StartsWith("PLACE_ROBOT")) //PLACE_ROBOT COMMAND
             {
                 string[] parameters = user_command.Split(' ');
                 int x = 0, y = 0;
                 string orientation = "";
                 bool valid_command = true;
 
+
                 switch (parameters.Length)
                 {
                     case 2:
                         string[] position = parameters[1].Split(',');
-                        x = int.Parse(position[0]);
-                        y = int.Parse(position[1]);
-                        orientation = position[2];
 
+                        //Chek if 1st and 2nd values are int
+                        if ((int.TryParse(position[0], out _)) && (int.TryParse(position[1], out _)))
+                        {
+                            x = int.Parse(position[0]);
+                            y = int.Parse(position[1]);
+                            orientation = position[2];
+                        }
                         break;
 
                     case 4:
-                        x = int.Parse(parameters[1].Trim(','));
-                        y = int.Parse(parameters[2].Trim(','));
-                        orientation = (parameters[3].Trim(','));
+                        //Chek if 1st and 2nd values are int
+                        if ((int.TryParse(parameters[1].Trim(','), out _)) && (int.TryParse(parameters[2].Trim(','), out _)))
+                        {
+                            x = int.Parse(parameters[1].Trim(','));
+                            y = int.Parse(parameters[2].Trim(','));
+                            orientation = (parameters[3].Trim(','));
+                        }
                         break;
 
                     default:
@@ -51,13 +61,14 @@ class Program
 
                 if (valid_command)
                 {
+                    // If command is correct (position and orientation), set
                     if (valid_Position(x, y) && valid_Orientation(orientation))
                     {
                         robo1.place_robot(x, y, orientation, board1);
                     }
                     else
                     {
-                        Console.WriteLine("Input ranges or orientation not valid");
+                        Console.WriteLine("Input values or orientation not valid");
                     }
                 }
 
@@ -73,13 +84,21 @@ class Program
                 {
                     case 2:
                         string[] position = parameters[1].Split(',');
-                        x = int.Parse(position[0]);
-                        y = int.Parse(position[1]);
+                        //Chek if 1st and 2nd values are int
+                        if ((int.TryParse(position[0], out _)) && (int.TryParse(position[1], out _)))
+                        {
+                            x = int.Parse(position[0]);
+                            y = int.Parse(position[1]);
+                        }
                         break;
 
                     case 3:
-                        x = int.Parse(parameters[1].Trim(','));
-                        y = int.Parse(parameters[2].Trim(','));
+                        //Chek if 1st and 2nd values are int
+                        if ((int.TryParse(parameters[1].Trim(','), out _)) && (int.TryParse(parameters[2], out _)))
+                        {
+                            x = int.Parse(parameters[1].Trim(','));
+                            y = int.Parse(parameters[2].Trim(','));
+                        }
                         break;
 
                     default:
@@ -88,6 +107,7 @@ class Program
                         break;
                 }
 
+                // If command is correct (position and orientation), set
                 if (valid_command)
                 {
                     if (valid_Position(x, y))
@@ -97,7 +117,7 @@ class Program
                     }
                     else
                     {
-                        Console.WriteLine("Input ranges not valid");
+                        Console.WriteLine("Input values not valid");
                     }
                 }
 
@@ -112,6 +132,11 @@ class Program
             else if (user_command == "MOVE")
             {
                 robo1.move(board1);
+            }
+            // -------------------------------------------------------------------------
+            else if (user_command == "LEFT" || user_command == "RIGHT")
+            {
+                robo1.tour(user_command);
 
             }
             // -------------------------------------------------------------------------
@@ -130,7 +155,8 @@ class Program
     }
 
     // This methos checks if the orientation is correct
-    public bool valid_Orientation(String orientation){
+    public bool valid_Orientation(String orientation)
+    {
         return (orientation == "NORTH" || orientation == "SOUTH" || orientation == "EAST" || orientation == "WEST");
     }
 

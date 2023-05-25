@@ -1,5 +1,8 @@
 using System;
 
+// Robot is initialized out of map
+// So if not in the map, theres is no robot yet
+
 public class Robot : Element
 {
     // Attributes
@@ -14,16 +17,8 @@ public class Robot : Element
     // Methods
     public void place_robot(int x, int y, string ori, Element[,] board)
     {
-        Element value = board[x, y];
-        bool is_empty = false;
-
-        // Check if its empty
-        if (value == null)
-        {
-            is_empty = true;
-        }
         // If empty, delete last position in map, and update robot values
-        if (is_empty)
+        if (board[x, y] == null)
         {
             // Delete last position, if a robot exists
             if (this.x_pos != -1)
@@ -139,5 +134,50 @@ public class Robot : Element
         }
 
     }
+
+    public void tour(String new_Orientation)
+    {
+        if (new_Orientation == "RIGHT")
+        {
+            switch (this.orientation)
+            {
+                case "NORTH":
+                    this.orientation = "EAST";
+                    break;
+
+                case "EAST":
+                    this.orientation = "SOUTH";
+                    break;
+
+                case "SOUTH":
+                    this.orientation = "WEST";
+
+                    break;
+                case "WEST":
+                    this.orientation = "NORTH";
+                    break;
+            }
+        }
+        else if (new_Orientation == "LEFT")
+        {
+            switch (this.orientation)
+            {
+                case "NORTH":
+                    this.orientation = "WEST";
+                    break;
+                case "WEST":
+                    this.orientation = "SOUTH";
+                    break;
+                case "SOUTH":
+                    this.orientation = "EAST";
+                    break;
+                case "EAST":
+                    this.orientation = "NORTH";
+                    break;
+
+            }
+        }
+    }
+
 
 }

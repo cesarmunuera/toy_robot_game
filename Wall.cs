@@ -1,5 +1,8 @@
 using System;
 
+// First wall is initialized out of map
+// So if not in the map, theres is no wall yet
+
 public class Wall : Element
 {
     // Constructor
@@ -12,24 +15,17 @@ public class Wall : Element
     // Methods
     public void place_wall(int x, int y, Element[,] board)
     {
-        Element value = board[x, y];
-        bool is_empty = false;
-
-        // Check if its empty
-        if (value == null){
-            is_empty = true;
-        }
         // If empty, add wall
-        if (is_empty)
+        if (board[x, y] == null)
         {
             // Save positions
             this.x_pos = x;
             this.y_pos = y;
             board[x, y] = this;
+            
         } else {
             // Not empty
             Console.WriteLine("PLACE NOT EMPTY");
         }
-
     }
 }
