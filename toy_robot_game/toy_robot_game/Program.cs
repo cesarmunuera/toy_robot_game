@@ -19,7 +19,6 @@ namespace toy_robot_game
                 Console.WriteLine();
                 Console.WriteLine("Type a command:");
                 string user_command = Console.ReadLine();
-                //string user_command = "place_wall 1, 1";
 
                 user_command = user_command.ToUpper(); //Upper always, to avoid problems
 
@@ -57,7 +56,7 @@ namespace toy_robot_game
                             break;
 
                         default:
-                            Console.WriteLine("Invalid command");
+                            //Console.WriteLine("Invalid command");
                             valid_command = false;
                             break;
                     }
@@ -69,10 +68,10 @@ namespace toy_robot_game
                         {
                             robo1.place_robot(x, y, orientation, board1);
                         }
-                        else
-                        {
-                            Console.WriteLine("Input values or orientation not valid");
-                        }
+                        //else
+                        //{
+                        //    Console.WriteLine("Input values or orientation not valid");
+                        //}
                     }
 
                 }
@@ -105,7 +104,7 @@ namespace toy_robot_game
                             break;
 
                         default:
-                            Console.WriteLine("Invalid command");
+                            //Console.WriteLine("Invalid command");
                             valid_command = false;
                             break;
                     }
@@ -118,10 +117,10 @@ namespace toy_robot_game
                             wall = new Wall(x, y);
                             wall.place_wall(x, y, board1);
                         }
-                        else
-                        {
-                            Console.WriteLine("Input values not valid");
-                        }
+                        //else
+                        //{
+                        //    Console.WriteLine("Input values not valid");
+                        //}
                     }
 
                 }
@@ -143,10 +142,10 @@ namespace toy_robot_game
 
                 }
                 // -------------------------------------------------------------------------
-                else
-                {
-                    Console.WriteLine("Command not supported");
-                }
+                //else
+                //{
+                //    Console.WriteLine("Command not supported");
+                //}
 
             }
         }

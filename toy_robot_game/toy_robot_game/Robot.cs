@@ -35,11 +35,11 @@ namespace toy_robot_game
                 this.orientation = ori;
                 board[x, y] = this;
             }
-            else
-            {
-                // Not empty
-                Console.WriteLine("PLACE NOT EMPTY");
-            }
+            //else
+            //{
+            //    // Not empty
+            //    Console.WriteLine("PLACE NOT EMPTY");
+            //}
         }
 
         // Report robot position
@@ -125,16 +125,16 @@ namespace toy_robot_game
                     this.y_pos = next_y;
                     board[next_x, next_y] = this;
                 }
-                else
-                {
-                    Console.WriteLine("Position not empty");
-                }
+                //else
+                //{
+                //    Console.WriteLine("Position not empty");
+                //}
 
             }
-            else
-            {
-                Console.WriteLine("No robot yet !!");
-            }
+            //else
+            //{
+            //    Console.WriteLine("No robot yet !!");
+            //}
 
         }
 
@@ -177,7 +177,6 @@ namespace toy_robot_game
                     case "EAST":
                         this.orientation = "NORTH";
                         break;
-
                 }
             }
         }

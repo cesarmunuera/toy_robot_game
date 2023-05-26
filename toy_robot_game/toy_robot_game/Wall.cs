@@ -28,11 +28,11 @@ namespace toy_robot_game
                 board[x, y] = this;
 
             }
-            else
-            {
-                // Not empty
-                Console.WriteLine("PLACE NOT EMPTY");
-            }
+            //else
+            //{
+            //    // Not empty
+            //    Console.WriteLine("PLACE NOT EMPTY");
+            //}
         }
     }
 }
