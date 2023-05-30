@@ -1,13 +1,14 @@
 ﻿using System;
+using System.Numerics;
 using System.Xml.Linq;
 
 namespace toy_robot_game
 {
     public class Programa
     {
-        public Element[,] board1 = new Element[6, 6];
+        public Element?[,] board1 = new Element?[6, 6];
         public Robot robo1 = new Robot(-1, -1, "N");
-        public Wall wall;
+        public Wall? wall;
 
 
         public void InitGame()
@@ -18,47 +19,37 @@ namespace toy_robot_game
                 // Get values from keyboard
                 Console.WriteLine();
                 Console.WriteLine("Type a command:");
-                string user_command = Console.ReadLine();
+                string user_command = Console.ReadLine() ?? "";
 
                 user_command = user_command.ToUpper(); //Upper always, to avoid problems
 
                 // -------------------------------------------------------------------------
                 if (user_command.StartsWith("PLACE_ROBOT")) //PLACE_ROBOT COMMAND
                 {
-                    string[] parameters = user_command.Split(' ');
                     int x = 0, y = 0;
                     string orientation = "";
-                    bool valid_command = true;
+                    bool valid_command = false;
 
+                    //Get position of the first space
+                    int firstSpaceIndex = user_command.IndexOf(' ');
 
-                    switch (parameters.Length)
+                    // If command structure is correct
+                    if (firstSpaceIndex != -1)
                     {
-                        case 2:
-                            string[] position = parameters[1].Split(',');
+                        //Get parameters, delete spaces, separate them by comma
+                        string parameters = user_command.Substring(firstSpaceIndex + 1);
+                        string filtered_space_parameters = parameters.Replace(" ", "");
+                        string[] final_parameters = filtered_space_parameters.Split(",");
 
-                            //Chek if 1st and 2nd values are int
-                            if ((int.TryParse(position[0], out _)) && (int.TryParse(position[1], out _)))
-                            {
-                                x = int.Parse(position[0]);
-                                y = int.Parse(position[1]);
-                                orientation = position[2];
-                            }
-                            break;
+                        //Check if there are the correct number of values, and if 1st and 2nd values are int
+                        if ((final_parameters.Length == 3) && (int.TryParse(final_parameters[0], out _)) && (int.TryParse(final_parameters[1], out _)))
+                        {
+                            x = int.Parse(final_parameters[0]);
+                            y = int.Parse(final_parameters[1]);
+                            orientation = final_parameters[2];
 
-                        case 4:
-                            //Chek if 1st and 2nd values are int
-                            if ((int.TryParse(parameters[1].Trim(','), out _)) && (int.TryParse(parameters[2].Trim(','), out _)))
-                            {
-                                x = int.Parse(parameters[1].Trim(','));
-                                y = int.Parse(parameters[2].Trim(','));
-                                orientation = (parameters[3].Trim(','));
-                            }
-                            break;
-
-                        default:
-                            //Console.WriteLine("Invalid command");
-                            valid_command = false;
-                            break;
+                            valid_command = true;
+                        }
                     }
 
                     if (valid_command)
@@ -78,35 +69,28 @@ namespace toy_robot_game
                 // -------------------------------------------------------------------------
                 else if (user_command.StartsWith("PLACE_WALL"))
                 {
-                    string[] parameters = user_command.Split(' ');
                     int x = 0, y = 0;
-                    bool valid_command = true;
+                    bool valid_command = false;
 
-                    switch (parameters.Length)
+                    //Get position of the first space
+                    int firstSpaceIndex = user_command.IndexOf(' ');
+
+                    // If command structure is correct
+                    if (firstSpaceIndex != -1)
                     {
-                        case 2:
-                            string[] position = parameters[1].Split(',');
-                            //Chek if 1st and 2nd values are int
-                            if ((int.TryParse(position[0], out _)) && (int.TryParse(position[1], out _)))
-                            {
-                                x = int.Parse(position[0]);
-                                y = int.Parse(position[1]);
-                            }
-                            break;
+                        //Get parameters, delete spaces, separate them by comma
+                        string parameters = user_command.Substring(firstSpaceIndex + 1);
+                        string filtered_space_parameters = parameters.Replace(" ", "");
+                        string[] final_parameters = filtered_space_parameters.Split(",");
 
-                        case 3:
-                            //Chek if 1st and 2nd values are int
-                            if ((int.TryParse(parameters[1].Trim(','), out _)) && (int.TryParse(parameters[2], out _)))
-                            {
-                                x = int.Parse(parameters[1].Trim(','));
-                                y = int.Parse(parameters[2].Trim(','));
-                            }
-                            break;
+                        //Check if there are the correct number of values, and if 1st and 2nd values are int
+                        if ((final_parameters.Length == 2) && (int.TryParse(final_parameters[0], out _)) && (int.TryParse(final_parameters[1], out _)))
+                        {
+                            x = int.Parse(final_parameters[0]);
+                            y = int.Parse(final_parameters[1]);
 
-                        default:
-                            //Console.WriteLine("Invalid command");
-                            valid_command = false;
-                            break;
+                            valid_command = true;
+                        }
                     }
 
                     // If command is correct (position and orientation), set

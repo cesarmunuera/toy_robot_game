@@ -18,7 +18,7 @@ namespace toy_robot_game
         }
 
         // Methods
-        public void place_robot(int x, int y, string ori, Element[,] board)
+        public void place_robot(int x, int y, string ori, Element?[,] board)
         {
             // If empty, delete last position in map, and update robot values
             if (board[x, y] == null)
@@ -56,7 +56,7 @@ namespace toy_robot_game
         }
 
         // Move robot 1 position, depending on its direction
-        public void move(Element[,] board)
+        public void move(Element?[,] board)
         {
             int next_x = 0, next_y = 0;
 

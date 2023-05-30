@@ -17,7 +17,7 @@ namespace toy_robot_game
         }
 
         // Methods
-        public void place_wall(int x, int y, Element[,] board)
+        public void place_wall(int x, int y, Element?[,] board)
         {
             // If empty, add wall
             if (board[x, y] == null)
